@@ -16,6 +16,7 @@ void main(void)
 	}
 
 	// Create the filter graph manager and query for interfaces.
+	//创建组件对象
 	hr = CoCreateInstance(CLSID_FilterGraph, NULL, CLSCTX_INPROC_SERVER,
 		IID_IGraphBuilder, (void **)&pGraph);
 	if (FAILED(hr))
@@ -24,6 +25,7 @@ void main(void)
 		return;
 	}
 
+	//查询得到组件对象上的接口
 	hr = pGraph->QueryInterface(IID_IMediaControl, (void **)&pControl);
 	hr = pGraph->QueryInterface(IID_IMediaEvent, (void **)&pEvent);
 
@@ -46,5 +48,5 @@ void main(void)
 	pControl->Release();
 	pEvent->Release();
 	pGraph->Release();
-	CoUninitialize();
+	CoUninitialize();    //释放COM库使用的资源
 }
