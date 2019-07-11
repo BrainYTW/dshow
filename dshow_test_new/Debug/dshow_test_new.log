@@ -1,19 +1,4 @@
-﻿  CaptureAudio.cpp
-e:\dshow\dshow_test_new\captureaudio.cpp(9): error C2664: “void Msg(HWND,TCHAR *,...)”: 无法将参数 2 从“const char [23]”转换为“TCHAR *”
-  e:\dshow\dshow_test_new\captureaudio.cpp(9): note: 从字符串文本转换将丢失 const 限定符(请参阅 /Zc:strictStrings)
-e:\dshow\dshow_test_new\captureaudio.cpp(64): error C2664: “HRESULT StringCchCopyA(STRSAFE_LPSTR,size_t,STRSAFE_LPCSTR)”: 无法将参数 3 从“BSTR”转换为“STRSAFE_LPCSTR”
-  e:\dshow\dshow_test_new\captureaudio.cpp(64): note: 与指向的类型无关；强制转换要求 reinterpret_cast、C 样式强制转换或函数样式强制转换
-e:\dshow\dshow_test_new\captureaudio.cpp(95): error C2664: “HRESULT StringCchCopyA(STRSAFE_LPSTR,size_t,STRSAFE_LPCSTR)”: 无法将参数 3 从“BSTR”转换为“STRSAFE_LPCSTR”
-  e:\dshow\dshow_test_new\captureaudio.cpp(95): note: 与指向的类型无关；强制转换要求 reinterpret_cast、C 样式强制转换或函数样式强制转换
-e:\dshow\dshow_test_new\captureaudio.cpp(179): error C2664: “INT SysReAllocString(BSTR *,const OLECHAR *)”: 无法将参数 2 从“TCHAR [260]”转换为“const OLECHAR *”
-  e:\dshow\dshow_test_new\captureaudio.cpp(179): note: 与指向的类型无关；强制转换要求 reinterpret_cast、C 样式强制转换或函数样式强制转换
-e:\dshow\dshow_test_new\captureaudio.cpp(194): error C2664: “INT SysReAllocString(BSTR *,const OLECHAR *)”: 无法将参数 2 从“const char [23]”转换为“const OLECHAR *”
-  e:\dshow\dshow_test_new\captureaudio.cpp(194): note: 与指向的类型无关；强制转换要求 reinterpret_cast、C 样式强制转换或函数样式强制转换
-  CaptureVideo.cpp
-e:\dshow\dshow_test_new\capturevideo.cpp(10): error C2664: “void Msg(HWND,TCHAR *,...)”: 无法将参数 2 从“const char [23]”转换为“TCHAR *”
-  e:\dshow\dshow_test_new\capturevideo.cpp(10): note: 从字符串文本转换将丢失 const 限定符(请参阅 /Zc:strictStrings)
-e:\dshow\dshow_test_new\capturevideo.cpp(69): error C2664: “HRESULT StringCchCopyA(STRSAFE_LPSTR,size_t,STRSAFE_LPCSTR)”: 无法将参数 3 从“BSTR”转换为“STRSAFE_LPCSTR”
-  e:\dshow\dshow_test_new\capturevideo.cpp(69): note: 与指向的类型无关；强制转换要求 reinterpret_cast、C 样式强制转换或函数样式强制转换
-  play_media.cpp
-e:\dshow\dshow_test_new\play_media.cpp(7): fatal error C1083: 无法打开包括文件: “resource.h”: No such file or directory
-  正在生成代码...
+﻿  main.cpp
+e:\dshow\dshow_test_new\main.cpp(158): warning C4326: “main”的返回类型应为“int”而非“void”
+e:\dshow\dshow_test_new\main.cpp(155): warning C4715: “SelectDevices”: 不是所有的控件路径都返回值
+  dshow_test_new.vcxproj -> E:\dshow\Debug\dshow_test_new.exe

@@ -18,36 +18,9 @@
     <ClInclude Include="dshow.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="common.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="qedit.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SampleGrabberCallback.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CaptureVideo.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CaptureAudio.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="play_media.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="common.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SampleGrabberCallback.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CaptureVideo.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CaptureAudio.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
