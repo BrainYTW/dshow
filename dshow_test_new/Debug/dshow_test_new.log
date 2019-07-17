@@ -1,1 +1,7 @@
-﻿  dshow_test_new.vcxproj -> E:\dshow\Debug\dshow_test_new.exe
+﻿  main.cpp
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+e:\dshow\dshow_test_new\main.cpp(5): warning C4005: “_AFXDLL”: 宏重定义
+  e:\dshow\dshow_test_new\main.cpp: note: 参见“_AFXDLL”的前一个定义
+e:\dshow\dshow_test_new\main.cpp(203): warning C4101: “dRes”: 未引用的局部变量
+e:\dshow\dshow_test_new\main.cpp(163): warning C4715: “SelectDevices”: 不是所有的控件路径都返回值
+  dshow_test_new.vcxproj -> E:\dshow\Debug\dshow_test_new.exe

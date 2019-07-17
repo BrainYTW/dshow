@@ -1,7 +1,12 @@
+#include <afxinet.h>
 #include <dshow.h>
-#include <windows.h>
+//#include <windows.h>
+
+#define _AFXDLL
 
 #pragma comment(lib,"strmiids.lib")
+#pragma comment(lib,"Quartz.lib")
+
 
 
 IGraphBuilder *pGraph = NULL;
@@ -9,6 +14,9 @@ ICaptureGraphBuilder2 *pBuild = NULL;
 IBaseFilter *pCap;
 IMediaControl *pControl = NULL;
 IMediaEvent   *pEvent = NULL;
+
+IBaseFilter *pMux;
+IConfigAviMux *pConfigMux = NULL;
 
 
 HRESULT InitCaptureGraphBuilder(
@@ -154,7 +162,7 @@ HRESULT SelectDevices(void)
 	}
 }
 
-void main()
+int main()
 {
 	HRESULT hr = CoInitialize(NULL);
 	hr = InitCaptureGraphBuilder(&pGraph, &pBuild);
@@ -163,19 +171,63 @@ void main()
 		hr = SelectDevices();
 		hr = pGraph->QueryInterface(IID_IMediaControl, (void **)&pControl);
 		hr = pGraph->QueryInterface(IID_IMediaEvent, (void **)&pEvent);
-		hr = pBuild->RenderStream(&PIN_CATEGORY_PREVIEW, &MEDIATYPE_Video,
-			pCap, NULL, NULL);
+		hr = pBuild->SetOutputFileName(
+			&MEDIASUBTYPE_Avi,  // Specifies AVI for the target file.
+			L"E:\\Example.avi", // File name.
+			&pMux,              // Receives a pointer to the mux.
+			NULL);              // (Optional) Receives a pointer to the file sink.
+		//hr = pBuild->RenderStream(&PIN_CATEGORY_PREVIEW, &MEDIATYPE_Video,
+		//	pCap, NULL, NULL);
+		hr = pBuild->RenderStream(
+			&PIN_CATEGORY_CAPTURE, // Pin category.
+			&MEDIATYPE_Video,      // Media type.
+			pCap,                  // Capture filter.
+			NULL,                  // Intermediate filter (optional).
+			pMux);                 // Mux or file sink filter.
+
+		// Release the mux filter.
+		pMux->Release();
 		if (SUCCEEDED(hr))
 		{
 			hr = pControl->Run();
 			if (SUCCEEDED(hr))
 			{
 				long evCode;
-				pEvent->WaitForCompletion(INFINITE, &evCode);
+				pEvent->WaitForCompletion(5000, &evCode);
+				hr = pControl->Stop();
 			}
 		}
 	}
 	CoUninitialize();
+
+	BOOL dRes, pRes;
+	HINTERNET hInternet;
+	HINTERNET hConnect;
+	hInternet = InternetOpen("A3GS Sample", INTERNET_OPEN_TYPE_DIRECT,
+		NULL, NULL, INTERNET_FLAG_NO_CACHE_WRITE);
+	if (NULL == hInternet)
+	{
+		printf("InternetOpen Error:%d\n", GetLastError());
+	}
+	hConnect = InternetConnect(hInternet, "10.4.64.11"/*FTP服务器地址*/, INTERNET_DEFAULT_FTP_PORT/*FTP端口号，此为默认值---21*/,
+		"vsuser"/*用户名*/, "654321"/*密码*/, INTERNET_SERVICE_FTP,
+		INTERNET_FLAG_EXISTING_CONNECT || INTERNET_FLAG_PASSIVE, 0);
+	if (NULL == hInternet)
+	{
+		printf("InternetConnect Error:%d\n", GetLastError());
+		InternetCloseHandle(hInternet);
+	}
+	pRes = FtpPutFile(hConnect, "E:\\Example.avi", "mycamera0717.avi", FTP_TRANSFER_TYPE_ASCII, 0);
+	if (pRes == 0)
+	{
+		printf("上传文件失败！\n");
+	}
+	else {
+		printf("上传文件成功！\n");
+	}
+	InternetCloseHandle(hConnect);
+	InternetCloseHandle(hInternet);
+	return 0;
 }
 
 //ICaptureGraphBuilder2 *pBuild; // Capture Graph Builder
