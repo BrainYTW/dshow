@@ -1,0 +1,7 @@
+﻿  Moc'ing SRGui.h...
+  SRGui.cpp
+  moc_SRGui.cpp
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+    正在创建库 C:\Users\qf\Desktop\screen-recording\x64\Debug\SRGui.lib 和对象 C:\Users\qf\Desktop\screen-recording\x64\Debug\SRGui.exp
+  SRGui.vcxproj -> C:\Users\qf\Desktop\screen-recording\x64\Debug\SRGui.dll

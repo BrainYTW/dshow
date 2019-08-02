@@ -1,0 +1,5 @@
+﻿  ScreenRecord.cpp
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+c:\users\qf\desktop\screen-recording\dshow_test_new\screenrecord.cpp(194): warning C4101: “dRes”: 未引用的局部变量
+c:\users\qf\desktop\screen-recording\dshow_test_new\screenrecord.cpp(144): warning C4715: “SCREENRECORD::SelectDevices”: 不是所有的控件路径都返回值
+  dshow_test_new.vcxproj -> C:\Users\qf\Desktop\screen-recording\x64\Debug\dshow_test_new.exe
