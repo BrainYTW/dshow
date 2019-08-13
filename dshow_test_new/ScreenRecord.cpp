@@ -152,13 +152,16 @@ void SCREENRECORD::StartRecord()
 		hr = SelectDevices();
 		hr = pGraph->QueryInterface(IID_IMediaControl, (void **)&pControl);
 		hr = pGraph->QueryInterface(IID_IMediaEvent, (void **)&pEvent);
+
+		hr = pBuild->RenderStream(&PIN_CATEGORY_PREVIEW, &MEDIATYPE_Video,
+			pCap, NULL, NULL);
+
 		hr = pBuild->SetOutputFileName(
 			&MEDIASUBTYPE_Avi,  // Specifies AVI for the target file.
 			L"C:\\Users\\qf\\Desktop\\test\\Example.avi", // File name.
 			&pMux,              // Receives a pointer to the mux.
 			NULL);              // (Optional) Receives a pointer to the file sink.
-		//hr = pBuild->RenderStream(&PIN_CATEGORY_PREVIEW, &MEDIATYPE_Video,
-		//	pCap, NULL, NULL);
+		
 		hr = pBuild->RenderStream(
 			&PIN_CATEGORY_CAPTURE, // Pin category.
 			&MEDIATYPE_Video,      // Media type.
@@ -168,6 +171,7 @@ void SCREENRECORD::StartRecord()
 
 		// Release the mux filter.
 		pMux->Release();
+
 		if (SUCCEEDED(hr))
 		{
 			hr = pControl->Run();

@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_SRGui_t {
     QByteArrayData data[6];
-    char stringdata0[54];
+    char stringdata0[51];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,14 +32,14 @@ struct qt_meta_stringdata_SRGui_t {
 static const qt_meta_stringdata_SRGui_t qt_meta_stringdata_SRGui = {
     {
 QT_MOC_LITERAL(0, 0, 5), // "SRGui"
-QT_MOC_LITERAL(1, 6, 10), // "onBtnClick"
-QT_MOC_LITERAL(2, 17, 0), // ""
-QT_MOC_LITERAL(3, 18, 13), // "clickstartBtn"
-QT_MOC_LITERAL(4, 32, 14), // "clickfinishBtn"
-QT_MOC_LITERAL(5, 47, 6) // "exitSR"
+QT_MOC_LITERAL(1, 6, 7), // "preview"
+QT_MOC_LITERAL(2, 14, 0), // ""
+QT_MOC_LITERAL(3, 15, 13), // "clickstartBtn"
+QT_MOC_LITERAL(4, 29, 14), // "clickfinishBtn"
+QT_MOC_LITERAL(5, 44, 6) // "exitSR"
 
     },
-    "SRGui\0onBtnClick\0\0clickstartBtn\0"
+    "SRGui\0preview\0\0clickstartBtn\0"
     "clickfinishBtn\0exitSR"
 };
 #undef QT_MOC_LITERAL
@@ -78,7 +78,7 @@ void SRGui::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         auto *_t = static_cast<SRGui *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->onBtnClick(); break;
+        case 0: _t->preview(); break;
         case 1: _t->clickstartBtn(); break;
         case 2: _t->clickfinishBtn(); break;
         case 3: _t->exitSR(); break;

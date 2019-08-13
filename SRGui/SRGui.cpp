@@ -8,21 +8,27 @@
 
 void SRGui::iniUI()
 {
-	m_btn = new QPushButton(tr("testBtn"));
-	QHBoxLayout *HLay1 = new QHBoxLayout;
-	HLay1->addWidget(m_btn);
+	player = new QMediaPlayer;
+
+	videoWidget = new QVideoWidget;
+	QHBoxLayout *HLay1 = new QHBoxLayout; //水平布局
+	HLay1->addWidget(videoWidget);
+
+	player->setVideoOutput(videoWidget);
+	previewBtn = new QPushButton(tr("预览"));
 
 	startBtn = new QPushButton(tr("开始录制"));
 	finishBtn = new QPushButton(tr("完成"));
 	closeBtn = new QPushButton(tr("退出"));
-	QHBoxLayout *HLay2 = new QHBoxLayout;
+	QHBoxLayout *HLay2 = new QHBoxLayout; //水平布局
 	HLay2->addStretch();
 	HLay2->addWidget(startBtn);
 	HLay2->addWidget(finishBtn);
+	HLay2->addWidget(previewBtn);
 	HLay2->addWidget(closeBtn);
 	HLay2->addStretch();
 
-	QVBoxLayout *Lay = new QVBoxLayout;
+	QVBoxLayout *Lay = new QVBoxLayout; //垂直布局
 	Lay->addLayout(HLay1);
 	Lay->addLayout(HLay2);
 
@@ -32,21 +38,16 @@ void SRGui::iniUI()
 void SRGui::iniSignalSlots()
 {
 	QObject::connect(startBtn, SIGNAL(clicked()), this, SLOT(clickstartBtn()));
+	QObject::connect(previewBtn, SIGNAL(clicked()), this, SLOT(preview()));
 	QObject::connect(finishBtn, SIGNAL(clicked()), this, SLOT(clickfinishBtn()));
 	QObject::connect(closeBtn, SIGNAL(clicked()), this, SLOT(exitSR()));//关闭录屏exe
 	QObject::connect(closeBtn, SIGNAL(clicked()), this, SLOT(close()));//关闭主界面
-	QObject::connect(m_btn, SIGNAL(clicked()), this, SLOT(onBtnClick()));
-	//QObject::connect(process, SIGNAL(started()), SLOT(start()));
 }
 
-SRGui::SRGui(QWidget * parent) : QWidget(parent)  //构造函数
+SRGui::SRGui(QWidget * parent) : QWidget(parent) ,  
+  m_playerState(QMediaPlayer::StoppedState)      //构造函数
 {
 	//this->resize(200, 200);
-	//QVBoxLayout *lay = new QVBoxLayout(); //垂直布局
-	//m_btn = new QPushButton();
-	//QObject::connect(m_btn, SIGNAL(clicked()), this, SLOT(onBtnClick()));
-	//lay->addWidget(m_btn);
-	//this->setLayout(lay);
 	this->resize(600, 500);
 	process = new QProcess();
 	process->start("C:/Users/qf/Desktop/screen-recording/x64/Debug/dshow_test_new.exe");
@@ -59,10 +60,11 @@ SRGui::~SRGui()
 
 }
 
-void SRGui::onBtnClick()
+void SRGui::preview()
 {
-	QMessageBox *test = new QMessageBox(QMessageBox::Icon::Information, QString("test"), QString("ninja"));
-	test->show();
+	player->setMedia(QUrl::fromLocalFile("C:\\Users\\qf\\Desktop\\test\\Example.avi"));
+	m_playerState = QMediaPlayer::PlayingState;
+	player->play();
 }
 
 void SRGui::clickstartBtn()
